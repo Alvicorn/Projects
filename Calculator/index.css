@@ -1,0 +1,141 @@
+:root {
+    --button-radius: 20%;
+}
+
+body {
+    font-family: 'Trebuchet MS','Lucida Sans Unicode','Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif';
+    text-align: center;
+}
+
+header {
+    font-weight: bold;
+}
+
+button {
+    border-radius: var(--button-radius);
+    
+}
+
+
+
+/*Grid Code*/
+#calculator-structure {
+    background-color: lightgray;
+    width: 50%;
+    margin-left: 25%;
+    row-gap: 1%;
+    column-gap: 1%;
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows:1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+    "seven eight nine backspace clear"
+    "four five six multiply divide"
+    "one two three plus minus"
+    "zero lp rp blank equal";
+}
+#zero {
+    background-color: paleturquoise;
+    grid-area: zero;
+}
+
+#one {
+    background-color: paleturquoise;
+    grid-area: one;
+}
+
+#two {
+    background-color: paleturquoise;
+    grid-area: two;
+}
+
+#three {
+    background-color: paleturquoise;
+    grid-area: three;
+}
+
+#four {
+    background-color: paleturquoise;
+    grid-area: four;
+}
+
+#five {
+    background-color: paleturquoise;
+    grid-area: five;
+}
+
+#six {
+    background-color: paleturquoise;
+    grid-area: six;
+}
+
+#seven {
+    background-color: paleturquoise;
+    grid-area: seven;
+}
+
+#eight {
+    background-color: paleturquoise;
+    grid-area: eight;
+}
+
+#nine {
+    background-color: paleturquoise;
+    grid-area: nine;
+}
+
+#multiply {
+    background-color: salmon;
+    grid-area: multiply;
+}
+
+#divide {
+    background-color: salmon;
+    grid-area: divide;
+}
+
+#plus {
+    background-color: salmon;
+    grid-area: plus;
+}
+
+#minus {
+    background-color: salmon;
+    grid-area: minus;
+}
+
+#equal {
+    background-color: salmon;
+    grid-area: equal;
+}
+
+#left-parenthesis {
+    background-color: orange;
+    grid-area: lp;
+}
+
+#right-parenthesis {
+    background-color: orange;
+    grid-area: rp;
+}
+
+#backspace {
+    background-color:lightpink;
+    grid-area: backspace;
+}
+
+#clear {
+    background-color: palegreen;
+    grid-area: clear;
+}
+
+.blank {
+    background-color: black;
+    grid-area: blank;
+    margin-top: 0.01em;
+    border-radius: var(--button-radius);
+}
+
+#display-el {
+    background-color: lightgray;
+}
