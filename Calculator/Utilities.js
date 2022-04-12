@@ -17,7 +17,8 @@
 // Description: Evalute the expression from the stack
 export function solver(queue) {
     let finalSolution = "";
-    // let validExpression = true; 
+    let validExpression = true; 
+
     // empty expression
     if(queue.isEmpty() || queue.peek() == "?")
         finalSolution = "0";
@@ -26,14 +27,15 @@ export function solver(queue) {
         const numStack = new Stack();
         const opStack = new Stack();
 
+        // console.log(queue);
 
         while (!queue.isEmpty()|| !opStack.isEmpty()) {
-            // if(validExpression) {
-                console.log("new token\n");
-                console.log(queue.peek());
+            if(validExpression) {
+                // console.log("new token\n");
 
                 let token = queue.dequeueFront();
-
+                // console.log("new token: " + token);
+                
                 if(!isNaN(token)) {
                     numStack.push(token);
                 }
@@ -51,6 +53,7 @@ export function solver(queue) {
                         let op = opStack.pop();
                         let ret = equate(num1, num2, op);
                         numStack.push(ret);
+                        opStack.pop();
                     }
                 }
 
@@ -74,6 +77,7 @@ export function solver(queue) {
 
                 }
                 else if (token === "*" || token === "/") {
+                    
                     if(!opStack.isEmpty()) {
                         if (opStack.peek() === "*" || opStack.peek() === "/") {
                             let num2 = numStack.pop();
@@ -81,20 +85,22 @@ export function solver(queue) {
                             let op = opStack.pop();
                             let ret = equate(num1, num2, op);
                             numStack.push(ret); 
+                            
                         }
-                    }
-                    else {
-                        opStack.push(token);
-                    }
+                        
+                    }                      
+                    opStack.push(token);
+                    
                 }
-                // else {
-                //     validExpression = false;
-                //     finalSolution = "Input invalid";
-                // }
-            // }
-            console.log(queue);
-            console.log(opStack);
-            console.log(numStack);
+                else {
+                    validExpression = false;
+                    finalSolution = "Input invalid";
+                }
+            }
+
+            // console.log(opStack);
+            // console.log(numStack);
+            // console.log("\n")
         }
         // if (validExpression)
         finalSolution = numStack.pop();
@@ -102,7 +108,7 @@ export function solver(queue) {
         numStack.deleteAll();
         opStack.deleteAll();
     }
-    console.log("evaluated expression is " + finalSolution);
+    // console.log("evaluated expression is " + finalSolution);
     return finalSolution.toString();
         
 }

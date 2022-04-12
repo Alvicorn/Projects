@@ -1,5 +1,7 @@
 :root {
-    --button-radius: 20%;
+    --button-radius: 10%;
+    --number: paleturquoise;
+    --operation: salmon;
 }
 
 body {
@@ -11,23 +13,23 @@ header {
     font-weight: bold;
 }
 
-button {
+button:hover {
     border-radius: var(--button-radius);
-    
+    transition:background-color 2s;    
 }
 
 
 
 /*Grid Code*/
 #calculator-structure {
-    background-color: lightgray;
     width: 50%;
     margin-left: 25%;
-    row-gap: 1%;
+    padding-bottom: 13%;
+    row-gap: 5%;
     column-gap: 1%;
     display: grid;
-    grid-template-columns:1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows:1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(5, auto) ;
+    grid-template-rows:repeat(4, 50%) ;
     grid-template-areas: 
     "seven eight nine backspace clear"
     "four five six multiply divide"
@@ -35,77 +37,77 @@ button {
     "zero lp rp blank equal";
 }
 #zero {
-    background-color: paleturquoise;
+    background-color: var(--number);
     grid-area: zero;
 }
 
 #one {
-    background-color: paleturquoise;
+    background-color:var(--number);
     grid-area: one;
 }
 
 #two {
-    background-color: paleturquoise;
+    background-color: var(--number);
     grid-area: two;
 }
 
 #three {
-    background-color: paleturquoise;
+    background-color:var(--number);
     grid-area: three;
 }
 
 #four {
-    background-color: paleturquoise;
+    background-color:var(--number);
     grid-area: four;
 }
 
 #five {
-    background-color: paleturquoise;
+    background-color:var(--number);
     grid-area: five;
 }
 
 #six {
-    background-color: paleturquoise;
+    background-color: var(--number);
     grid-area: six;
 }
 
 #seven {
-    background-color: paleturquoise;
+    background-color: var(--number);
     grid-area: seven;
 }
 
 #eight {
-    background-color: paleturquoise;
+    background-color:var(--number);
     grid-area: eight;
 }
 
 #nine {
-    background-color: paleturquoise;
+    background-color:var(--number);
     grid-area: nine;
 }
 
 #multiply {
-    background-color: salmon;
+    background-color: var(--operation);
     grid-area: multiply;
 }
 
 #divide {
-    background-color: salmon;
+    background-color:var(--operation);
     grid-area: divide;
 }
 
 #plus {
-    background-color: salmon;
+    background-color:var(--operation);
     grid-area: plus;
 }
 
 #minus {
-    background-color: salmon;
+    background-color:var(--operation);
     grid-area: minus;
 }
 
 #equal {
-    background-color: salmon;
+    background-color:var(--operation);
     grid-area: equal;
 }
 
@@ -133,7 +135,6 @@ button {
     background-color: black;
     grid-area: blank;
     margin-top: 0.01em;
-    border-radius: var(--button-radius);
 }
 
 #display-el {

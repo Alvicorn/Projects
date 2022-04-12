@@ -140,6 +140,8 @@ backButton.addEventListener("click", e => {
         eqn.dequeueBack();
         display.pop();
         let newString = display.join("");
+        if(newString.length === 0)  
+            newString = "Enter your equation";
         displayEl.textContent = newString;
     }
 })
@@ -147,13 +149,14 @@ clearButton.addEventListener("click", e => {
     console.log("clear");
     eqn.deleteAll();
     display.length = 0;
-    displayEl.textContent = display;
+    displayEl.textContent = "Enter your equation";
 })
 equalButton.addEventListener("click", e => {
     console.log("=");
     eqn.enqueue("?"); // end of line
     let solution = solver(eqn);
     displayEl.textContent = solution;
+    eqn.deleteAll();
 })
 
 
