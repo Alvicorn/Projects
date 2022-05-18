@@ -1,40 +1,45 @@
 require("dotenv").config();
-const express = require("express");
-const { getTags, createEvent } = require("./notion");
-
-
+const express = require('express');
+const { createEvent } = require('./notion')
 const app = express();
-app.set("views", "./views");
-app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: true }));
 
-// let tags = [];
-// getTags().then(data => {
-//     tags = data;
-// })
-// setInterval(async () => {
-//     tags = await getTags();
-// }, 1000 * 60 * 60 * 24) // update tags once a day
+app.set('views', './views');
 
+app.use(express.urlencoded({extended: true}));
+// app.use(express.json());
 
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + '/views/index.html');
+})
 
-// app.get("/", (req, res) => {
-//     res.render("index", { tags });
-// })
-
-// app.post("/create-event", async (req, res) => {
-//     const { title, description, tagIds = [] } = req.body;
-
-//     await createEvent({
-//         title, 
-//         description, 
-//         tagIds: (Array.isArray(tagIds) ? tagIds : [tagIds]).map(tagId => {
-//             return {id: tagId }
-//         }),
-//     }),
-//     res.redirect("/");
-// });
+app.post("/", (req, res) => {
+    let eventName = req.body.eventName;
+    let description = req.body.description;
+    let kayla = req.body.kayla; // returns a string "on" or "off"
+    let alvin = req.body.alvin; // returns a string "on" or "off"
+    let startDate = req.body.startDate; //returns a string with date in iso 8601
+    let endDate = req.body.endDate; //returns a string with date in iso 8601
 
 
+    if(eventName === "")
+        eventName = "Untitled Event";
+    if (startDate === "")
+        startDate = new Date();
+    if (endDate === "")
+        endDate = new Date();
+
+    createEvent({ eventName: eventName, 
+                  description: description, 
+                  kayla: kayla, 
+                  alvin: alvin, 
+                  startDate: startDate, 
+                  endDate: endDate })
+
+    // res.send("return: "+  startDate);
+    res.redirect("/results");
+})
+app.get("/results", (req, res) => {
+    res.sendFile(__dirname + "/views/results.html");
+})
 
 app.listen(process.env.PORT);

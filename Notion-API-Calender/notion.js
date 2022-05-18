@@ -10,7 +10,7 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY});
 //              @parm kayla: boolean for kayla if tagged for the event
 //              @parm startDate: start date and time given is ISO 8601
 //              @parm endDate: end date and time given is ISO 8601
-async function CreateEvent({ eventName, description, alvin, kayla, startDate, endDate }) {
+async function createEvent({ eventName, description, kayla, alvin, startDate, endDate }) {
     
     
     
@@ -52,11 +52,11 @@ async function CreateEvent({ eventName, description, alvin, kayla, startDate, en
 
     pageId = newPage.id;
     // add tags
-    if(alvin === true && kayla === true)
+    if(alvin === "on" && kayla === "on")
         bothUpdate(pageId)
-    else if(alvin == true)
+    else if(alvin == "on")
         alvinUpdate(pageId);
-    else if(kayla === true)
+    else if(kayla === "on")
         kaylaUpdate(pageId);
 
 
@@ -96,7 +96,7 @@ async function kaylaUpdate(pageID) {
 }
 
 
-CreateEvent({ eventName: "Test", description: "test1", alvin: true, kayla: true, startDate: "2022-05-26", endDate: "2022-05-27" })
+// CreateEvent({ eventName: "Test", description: "test1", alvin: true, kayla: true, startDate: "2022-05-26", endDate: "2022-05-27" })
 
 
 
@@ -122,3 +122,5 @@ async function getTags() {
         return { id: option.id, name: option.name}
     }); // filter out the colour info
 } 
+
+module.exports = { createEvent };
