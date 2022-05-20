@@ -41,7 +41,7 @@ async function createEvent({ eventName, description, kayla, alvin, startDate, en
                 date: { 
                   start: startDate, // ISO 8601
                   end: endDate,     // ISO 8601
-                //   time_zone: "Canada/Pacific"       
+                  time_zone: "Canada/Pacific"       
                 },
             },
             [process.env.NOTION_TAG_ID]: { 
