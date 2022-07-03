@@ -1,142 +1,138 @@
+* {
+    padding: 0;
+    margin: 0;
+}
 :root {
     --button-radius: 10%;
-    --number: paleturquoise;
-    --operation: salmon;
-}
+    --colour:rgba(90,90,90,1);
+    --hover-colour: rgba(110, 110, 110, 0.87);
+} 
 
 body {
     font-family: 'Trebuchet MS','Lucida Sans Unicode','Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif';
     text-align: center;
-}
-
-header {
     font-weight: bold;
+    font-size: 30px;   
+    color: #fafbff;
 }
 
-button:hover {
-    border-radius: var(--button-radius);
-    transition:background-color 2s;    
+sub {
+    vertical-align: sub;
+    margin-top:0.5em;
+    font-size: 20px;
+}
+
+sup {
+    vertical-align: super;
+    margin-bottom: 0.75em;
+    font-size: 20px;
+}
+
+.calculator-struct {
+    background-color:rgba(30,30,30,1);
+    width: 100vw;
+    height: 100vh;
+    border-radius:5px;
+    display: inline-grid;
+    grid-template-columns:repeat(5, minmax(50px, 100vw));
+    grid-template-rows: repeat(6, minmax(65px, 100vh));
+    grid-template-areas:
+    "display display display display display"
+    "op1 op2 op3 op4 op5"
+    "num1 num2 num3 op4 op5"
+    "num4 num5 num6 op6 op7"
+    "num8 num9 num10 num11 equal"
+    "zero zero op14 op15 equal"; 
+
+        
+}
+
+#display {
+    margin: 0.5em;
+    grid-area: display;
+    border: 3px solid #898b8c;
+    border-radius: 4px;
+    background-color:#fafbff;
+    color:rgba(0,0,0,1);
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.number {
+    margin: 0.5em;
+    border-radius: 4px;
+    background-color: var(--colour);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.number:hover{
+    background-color: var(--hover-colour);
+    box-shadow: 0 4px;
+    /* filter:brightness(110%);  */
+}
+
+.operator{
+    margin: 0.5em;
+    border-radius: 4px;
+    background-color: var(--colour);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.operator:hover{
+    background-color: var(--hover-colour);
+    box-shadow: 0 4px ;
+     /* filter:brightness(140%);  */
 }
 
 
-
-/*Grid Code*/
-#calculator-structure {
-    width: 50%;
-    margin-left: 25%;
-    padding-bottom: 13%;
-    row-gap: 5%;
-    column-gap: 1%;
-    display: grid;
-    grid-template-columns: repeat(5, auto) ;
-    grid-template-rows:repeat(4, 50%) ;
-    grid-template-areas: 
-    "seven eight nine backspace clear"
-    "four five six multiply divide"
-    "one two three plus minus"
-    "zero lp rp blank equal";
+#clear {
+    margin: 0.5em;
+    border-radius: 4px;
+    background-color: var(--colour);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:rgba(237,65,62,1);
 }
-#zero {
-    background-color: var(--number);
-    grid-area: zero;
-}
-
-#one {
-    background-color:var(--number);
-    grid-area: one;
-}
-
-#two {
-    background-color: var(--number);
-    grid-area: two;
-}
-
-#three {
-    background-color:var(--number);
-    grid-area: three;
-}
-
-#four {
-    background-color:var(--number);
-    grid-area: four;
-}
-
-#five {
-    background-color:var(--number);
-    grid-area: five;
-}
-
-#six {
-    background-color: var(--number);
-    grid-area: six;
-}
-
-#seven {
-    background-color: var(--number);
-    grid-area: seven;
-}
-
-#eight {
-    background-color:var(--number);
-    grid-area: eight;
-}
-
-#nine {
-    background-color:var(--number);
-    grid-area: nine;
-}
-
-#multiply {
-    background-color: var(--operation);
-    grid-area: multiply;
-}
-
-#divide {
-    background-color:var(--operation);
-    grid-area: divide;
-}
-
-#plus {
-    background-color:var(--operation);
-    grid-area: plus;
-}
-
-#minus {
-    background-color:var(--operation);
-    grid-area: minus;
+#clear:hover{
+    background-color: var(--hover-colour);
+    box-shadow: 0 4px ;
+    /* filter:brightness(140%); */
 }
 
 #equal {
-    background-color:var(--operation);
+    padding-top: 1em;
+    margin: 0.5em;
+    border-radius: 4px;
+    background-color: var(--colour);
     grid-area: equal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:rgba(108, 201, 240);
+}
+#equal:hover{
+    background-color: var(--hover-colour);
+    box-shadow: 0 4px ;
+    /* filter:brightness(140%); */
 }
 
-#left-parenthesis {
-    background-color: orange;
-    grid-area: lp;
+
+#zero {
+    grid-area: zero;
 }
 
-#right-parenthesis {
-    background-color: orange;
-    grid-area: rp;
-}
-
-#backspace {
-    background-color:lightpink;
-    grid-area: backspace;
-}
-
-#clear {
-    background-color: palegreen;
-    grid-area: clear;
-}
 
 .blank {
-    background-color: black;
-    grid-area: blank;
-    margin-top: 0.01em;
-}
-
-#display-el {
-    background-color: lightgray;
+    padding-top: 1em;
+    margin: 0.5em;
+    border-radius: 4px;
+    background-color: #000000;
+    position: relative;
 }

@@ -10,9 +10,9 @@
  * 
  **/
 
- import Stack from "./Stack.js";
- import Queue from "./Queue.js";
-
+import Stack from "./Stack.js";
+import Queue from "./Queue.js";
+import { ROOT, MULTIPLY, DIVIDE} from "./Symbols.js";
 
 // Description: Evalute the expression from the stack
 export function solver(queue) {
@@ -60,8 +60,9 @@ export function solver(queue) {
                 else if (token === "+" || token === "-" || token === "?") {
                     
                     if(!opStack.isEmpty()) {
-                        if(opStack.peek() === "*" || opStack.peek() === "/" ||
-                        opStack.peek() === "+" || opStack.peek() === "-") {
+                        if( opStack.peek() === "^" || opStack.peek() === ROOT || 
+                            opStack.peek() === MULTIPLY || opStack.peek() === DIVIDE ||
+                            opStack.peek() === "+" || opStack.peek() === "-") {
                             while(!opStack.isEmpty() && opStack.peek() !== "("
                                 && opStack.peek() !== ")") {                        
                                 let num2 = numStack.pop();
@@ -76,10 +77,11 @@ export function solver(queue) {
                         opStack.push(token);
 
                 }
-                else if (token === "*" || token === "/") {
+                else if (token === MULTIPLY || token === DIVIDE) {
                     
                     if(!opStack.isEmpty()) {
-                        if (opStack.peek() === "*" || opStack.peek() === "/") {
+                        if (opStack.peek() === "^" || opStack.peek() === ROOT || 
+                            opStack.peek() === MULTIPLY || opStack.peek() === DIVIDE) {
                             let num2 = numStack.pop();
                             let num1 = numStack.pop();
                             let op = opStack.pop();
@@ -92,6 +94,17 @@ export function solver(queue) {
                     opStack.push(token);
                     
                 }
+                else if (token === "^" || token === ROOT) {
+                    if(opStack.peek() === "^" || opStack.peek() === ROOT) {
+                        let num2 = numStack.pop();
+                        let num1 = numStack.pop();
+                        let op = opStack.pop();
+                        let ret = equate(num1, num2, op);
+                        numStack.push(ret); 
+                    }
+                    opStack.push(token);
+                }
+
                 else {
                     validExpression = false;
                     finalSolution = "Input invalid";
@@ -118,10 +131,10 @@ function equate(num1, num2, op) {
 
     let ret;
     switch (op) {
-        case "*": 
+        case MULTIPLY: 
             ret = num1 * num2;
             break;
-        case "/":
+        case DIVIDE:
             ret = num1 / num2;
             break;
         case "+":
@@ -130,6 +143,11 @@ function equate(num1, num2, op) {
         case "-":
             ret = num1 - num2;
             break;
+        case "^":
+            ret = Math.pow(num1, num2);
+            break;
+        case ROOT:
+            ret = Math.pow(num2, 1/num1);
     }
     return ret;
 }
